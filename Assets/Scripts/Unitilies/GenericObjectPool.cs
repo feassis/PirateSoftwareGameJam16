@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CosmicCuration.Utilities
+namespace Utilities.ObjectPooling
 {
     /// <summary>
     /// This is a Generic Object Pool Class with basic functionality, which can be inherited to implement object pools for any type of objects.

@@ -18,14 +18,25 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private float  jumpUpwardsDuration = 0.3f;
     [SerializeField] private float  jumpVelocity = 2f;
     [SerializeField] private float  gravity = -5f;
+
     [Header("Camera Settings")]
     [SerializeField] private float lookSensitivityX = 100f;
     [SerializeField] private float lookSensitivityY = 3f;
     [SerializeField] private float verticalLookUperBounds = 90f;
     [SerializeField] private float verticalLookLowerBounds = -90f;
     [SerializeField] private Transform cameraTransform;
-    
+
+    [Header("Weapon Settings")]
+    [SerializeField] private float damage = 5f;
+    [SerializeField] private float fireRate = 2f;
+    [SerializeField] private float bulletSpeed = 30f;
+    [SerializeField] private float bulletLifeTime = 3f;
+    [SerializeField] private WeaponView weaponPrefab;
+    [SerializeField] private BulletView bulletPrefab;
+    [SerializeField] private Transform weaponHolder;
+
     private CharacterController characterController;
+    private WeaponController weaponController;
 
     private PlayerInput playerInput;
     private Vector2 lookInput;
@@ -40,6 +51,13 @@ public class PlayerView : MonoBehaviour
 
     private void Awake()
     {
+        InitializeWeapon();
+        SetupInput();
+        characterController = GetComponent<CharacterController>();
+    }
+
+    private void SetupInput()
+    {
         playerInput = new PlayerInput();
         playerInput.Enable();
         playerInput.Player.Look.performed += ctx => LookInput(ctx.ReadValue<Vector2>());
@@ -48,7 +66,12 @@ public class PlayerView : MonoBehaviour
         playerInput.Player.Move.canceled += ctx => MoveInputStop(ctx.ReadValue<Vector2>());
         playerInput.Player.Dash.performed += ctx => Dash();
         playerInput.Player.Jump.performed += ctx => Jump();
-        characterController = GetComponent<CharacterController>();
+    }
+
+    private void InitializeWeapon()
+    {
+        WeaponModel weaponModel = new WeaponModel(damage, fireRate, bulletSpeed, bulletLifeTime, bulletPrefab);
+        weaponController = new WeaponController(weaponPrefab, weaponModel, weaponHolder);
     }
 
     private void Jump()

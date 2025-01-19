@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &269360422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 269360423}
+  m_Layer: 0
+  m_Name: WeaponHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &269360423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269360422}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.34, y: -0.197, z: 0.285}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 746220941}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &311586140
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +162,7 @@ GameObject:
   - component: {fileID: 311586143}
   - component: {fileID: 311586142}
   - component: {fileID: 311586141}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +391,7 @@ GameObject:
   - component: {fileID: 358943158}
   - component: {fileID: 358943157}
   - component: {fileID: 358943156}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,7 +531,7 @@ GameObject:
   - component: {fileID: 668631394}
   - component: {fileID: 668631393}
   - component: {fileID: 668631392}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,7 +717,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.372, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 269360423}
   m_Father: {fileID: 779351698}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &746220942
@@ -820,6 +852,13 @@ MonoBehaviour:
   verticalLookUperBounds: 90
   verticalLookLowerBounds: -90
   cameraTransform: {fileID: 746220941}
+  damage: 5
+  fireRate: 4
+  bulletSpeed: 30
+  bulletLifeTime: 3
+  weaponPrefab: {fileID: 1005416831074062685, guid: 0b975863ce6553e499f2c3ed4e8a68f8, type: 3}
+  bulletPrefab: {fileID: 4237540301011920922, guid: 77a873a8356c6364fa908eef50048b22, type: 3}
+  weaponHolder: {fileID: 269360423}
 --- !u!1 &1131568471
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,7 +871,7 @@ GameObject:
   - component: {fileID: 1131568474}
   - component: {fileID: 1131568473}
   - component: {fileID: 1131568472}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1026,8 +1065,8 @@ GameObject:
   - component: {fileID: 1397913185}
   - component: {fileID: 1397913184}
   - component: {fileID: 1397913183}
-  m_Layer: 0
-  m_Name: Cube (1)
+  m_Layer: 6
+  m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1134,7 +1173,7 @@ GameObject:
   - component: {fileID: 1888542409}
   - component: {fileID: 1888542408}
   - component: {fileID: 1888542407}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -809,10 +809,12 @@ MonoBehaviour:
   dashSpeed: 15
   dashDuration: 0.3
   dashCooldown: 3
-  maxFallVelocity: -10
-  maxUpVelocity: 50
+  maxFallVelocity: -2
+  maxUpVelocity: 10
   jumpCooldown: 0.5
-  jumpHeight: 2
+  jumpUpwardsDuration: 0.2
+  jumpVelocity: 5
+  gravity: -2
   lookSensitivityX: 150
   lookSensitivityY: 100
   verticalLookUperBounds: 90

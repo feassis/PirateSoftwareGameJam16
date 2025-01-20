@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf65c29aae9d97f458c54d3f632300a3, type: 3}
+  m_Name: PlayerSO
+  m_EditorClassIdentifier: 
+  PlayerViewPrefab: {fileID: 5807613720486478550, guid: c1e06914d378edb4f8bb918ab348e710, type: 3}
+  MovementSpeed: 5
+  DashSpeed: 15
+  DashDuration: 0.3
+  DashCooldown: 2
+  MaxFallVelocity: -2
+  MaxUpVelocity: 10
+  JumpCooldown: 0.5
+  JumpUpwardsDuration: 0.2
+  JumpVelocity: 6
+  Gravity: -2
+  LookSensitivityX: 150
+  LookSensitivityY: 100
+  VerticalLookUperBounds: 90
+  VerticalLookLowerBounds: -90
+  Damage: 5
+  FireRate: 4
+  BulletSpeed: 25
+  BulletLifeTime: 3
+  WeaponThrowVelocity: 20
+  WeaponPrefab: {fileID: 1005416831074062685, guid: 0b975863ce6553e499f2c3ed4e8a68f8, type: 3}
+  BulletPrefab: {fileID: 4237540301011920922, guid: 77a873a8356c6364fa908eef50048b22, type: 3}

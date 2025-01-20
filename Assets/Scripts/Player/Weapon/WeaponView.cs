@@ -6,6 +6,8 @@ using UnityEngine;
 public class WeaponView : MonoBehaviour
 {
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private Rigidbody myRigidbody;
+    [SerializeField] private LayerMask obstacleLayer;
     private WeaponController controller;
     private PlayerInput playerInput;
 
@@ -14,7 +16,9 @@ public class WeaponView : MonoBehaviour
         playerInput = new PlayerInput();
         playerInput.Enable();
         playerInput.Player.Shoot.performed += ctx => OnShootPerformed();
+        playerInput.Player.Throw.performed += ctx => OnThrowPerformed();
     }
+
 
     private void OnEnable()
     {
@@ -42,6 +46,23 @@ public class WeaponView : MonoBehaviour
         controller.Shoot();
     }
 
+    private void OnThrowPerformed()
+    {
+        controller.Throw();
+    }
+
+    public void ThrowViewLogic()
+    {
+        transform.parent = null;
+        playerInput.Disable();
+        transform.Rotate(0, 90, 0);
+    }
+
+    public Rigidbody GetRigidbody()
+    {
+        return myRigidbody;
+    }
+
     public void SetController(WeaponController controller)
     {
         this.controller = controller;
@@ -55,5 +76,13 @@ public class WeaponView : MonoBehaviour
     public Transform GetShootPointTransform()
     {
         return shootPoint;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (obstacleLayer == (obstacleLayer | (1 << collision.gameObject.layer)))
+        {
+            controller.DestroyWeapon();
+        }
     }
 }

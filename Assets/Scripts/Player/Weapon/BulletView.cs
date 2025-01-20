@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletView : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private Rigidbody myRigidbody;
     [SerializeField] private LayerMask obstacleLayer;
     private BulletController controller;
 
@@ -15,7 +15,7 @@ public class BulletView : MonoBehaviour
 
     public Rigidbody GetRigidbody()
     {
-        return rigidbody;
+        return myRigidbody;
     }
 
     public void StartLifeTime(float lifeTime)

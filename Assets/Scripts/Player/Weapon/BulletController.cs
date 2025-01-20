@@ -16,4 +16,9 @@ public class BulletController
         this.view.SetController(this);
         this.model.SetController(this);
     }
+
+    public float GetDamage()
+    {
+        return model.Damage;
+    }
 }

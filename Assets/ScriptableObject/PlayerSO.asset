@@ -27,10 +27,4 @@ MonoBehaviour:
   LookSensitivityY: 100
   VerticalLookUperBounds: 90
   VerticalLookLowerBounds: -90
-  Damage: 5
-  FireRate: 4
-  BulletSpeed: 25
-  BulletLifeTime: 3
-  WeaponThrowVelocity: 20
-  WeaponPrefab: {fileID: 1005416831074062685, guid: 0b975863ce6553e499f2c3ed4e8a68f8, type: 3}
-  BulletPrefab: {fileID: 4237540301011920922, guid: 77a873a8356c6364fa908eef50048b22, type: 3}
+  WeaponSO: {fileID: 11400000, guid: 573dee6344c45864c877a6fab2d057f4, type: 2}

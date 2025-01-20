@@ -6,6 +6,7 @@ public class BulletView : MonoBehaviour
 {
     [SerializeField] private Rigidbody myRigidbody;
     [SerializeField] private LayerMask obstacleLayer;
+    
     private BulletController controller;
 
     public void SetController(BulletController controller)
@@ -33,6 +34,13 @@ public class BulletView : MonoBehaviour
     {
         if (obstacleLayer == (obstacleLayer | (1 << other.gameObject.layer)))
         {
+            Destroy(gameObject);
+            return;
+        }
+
+        if(other.TryGetComponent(out IDamageble damageble))
+        {
+            damageble.TakeDamage(controller.GetDamage());
             Destroy(gameObject);
         }
     }

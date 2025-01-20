@@ -1,8 +1,7 @@
 using Input;
-using System;
-using Unity.Android.Gradle.Manifest;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerView : MonoBehaviour

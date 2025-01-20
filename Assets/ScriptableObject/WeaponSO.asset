@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecfd5e142e8ddba4487ef8914e1ff0de, type: 3}
+  m_Name: WeaponSO
+  m_EditorClassIdentifier: 
+  Damage: 5
+  FireRate: 4
+  BulletSpeed: 25
+  BulletLifeTime: 3
+  BulletPrefab: {fileID: 4237540301011920922, guid: 77a873a8356c6364fa908eef50048b22, type: 3}
+  WeaponPrefab: {fileID: 1005416831074062685, guid: 0b975863ce6553e499f2c3ed4e8a68f8, type: 3}
+  WeaponThrowVelocity: 20
+  OverheatIncreasePerShot: 5
+  OverheatDecreasePerSeconds: 1
+  OverheatLimit: 100

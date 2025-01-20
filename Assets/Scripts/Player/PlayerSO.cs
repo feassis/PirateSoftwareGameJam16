@@ -24,13 +24,5 @@ public class PlayerSO : ScriptableObject
     public float VerticalLookLowerBounds = -90f;
 
     [Header("Weapon Settings")]
-    public float Damage = 5f;
-    public float FireRate = 2f;
-    public float BulletSpeed = 30f;
-    public float BulletLifeTime = 3f;
-    public float WeaponThrowVelocity = 20f;
-    public WeaponView WeaponPrefab;
-    public BulletView BulletPrefab;
-
-    
+    public WeaponSO WeaponSO;
 }

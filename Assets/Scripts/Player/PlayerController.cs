@@ -54,8 +54,8 @@ public class PlayerController
     private void InstantiateWeapon()
     {
         eventService.OnWeaponDestroyed.AddListener(OnWeaponController);
-        WeaponModel weaponModel = new WeaponModel(model.Damage, model.FireRate, model.BulletSpeed, model.BulletLifeTime, model.WeaponThrowVelocity, model.BulletPrefab);
-        weaponController = new WeaponController(model.WeaponPrefab, weaponModel, view.GetWeaponHolder(), eventService);
+        WeaponModel weaponModel = new WeaponModel(model.WeaponSO);
+        weaponController = new WeaponController(model.WeaponSO.WeaponPrefab, weaponModel, view.GetWeaponHolder(), eventService);
     }
 
     private float GetSpeed()

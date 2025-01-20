@@ -18,13 +18,7 @@ public class PlayerModel
     public float VerticalLookUperBounds = 90f;
     public float VerticalLookLowerBounds = -90f;
 
-    public float Damage = 5f;
-    public float FireRate = 2f;
-    public float BulletSpeed = 30f;
-    public float BulletLifeTime = 3f;
-    public float WeaponThrowVelocity = 20f;
-    public WeaponView WeaponPrefab;
-    public BulletView BulletPrefab;
+    public WeaponSO WeaponSO;
 
     private PlayerController playerController;
 
@@ -46,13 +40,7 @@ public class PlayerModel
         VerticalLookUperBounds = playerSO.VerticalLookUperBounds;
         VerticalLookLowerBounds = playerSO.VerticalLookLowerBounds;
 
-        Damage = playerSO.Damage;
-        FireRate = playerSO.FireRate;
-        BulletSpeed = playerSO.BulletSpeed;
-        BulletLifeTime = playerSO.BulletLifeTime;
-        WeaponThrowVelocity = playerSO.WeaponThrowVelocity;
-        WeaponPrefab = playerSO.WeaponPrefab;
-        BulletPrefab = playerSO.BulletPrefab;
+        WeaponSO = playerSO.WeaponSO;
     }
 
     public void SetController(PlayerController playerController)

@@ -1,15 +1,20 @@
 using Input;
 using System;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponView : MonoBehaviour
 {
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Rigidbody myRigidbody;
     [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private Image overheatBar;
+    [SerializeField] private List<OverheatColorPercentage> overheatColors = new List<OverheatColorPercentage>();
     private WeaponController controller;
     private PlayerInput playerInput;
+
+
 
     private void Awake()
     {
@@ -82,7 +87,20 @@ public class WeaponView : MonoBehaviour
     {
         if (obstacleLayer == (obstacleLayer | (1 << collision.gameObject.layer)))
         {
-            controller.DestroyWeapon();
+            controller.BlowUp();
+        }
+    }
+
+    public void UpdateOverheatUI(float overheatPercentage)
+    {
+        overheatBar.fillAmount = overheatPercentage;
+        for (int i = 0; i < overheatColors.Count; i++)
+        {
+            if (overheatColors[i].Percentage >= overheatPercentage)
+            {
+                overheatBar.color = overheatColors[i].Color;
+                break;
+            }
         }
     }
 }

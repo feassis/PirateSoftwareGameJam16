@@ -83,8 +83,6 @@ public class WeaponController
 
     public void BlowUp()
     {
-        Debug.Log("BlowUp");
-
         float radious = model.MinBlastRadious + (model.MaxBlastRadious - model.MinBlastRadious) * Mathf.Clamp(overheatAmount / model.OverheatLimit, 0,1);
 
         Collider[] colliders = Physics.OverlapSphere(view.transform.position, radious, model.ExplosionTarget);

@@ -8,6 +8,8 @@ public class PlayerView : MonoBehaviour, IDamageble
 {
     [SerializeField] private Transform weaponHolder;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Image healthBar;
+    [SerializeField] private Image armorBar;
 
     private CharacterController characterController;
 
@@ -97,6 +99,7 @@ public class PlayerView : MonoBehaviour, IDamageble
         controller.HandleJumpLogic();
         controller.Look();
         controller.Move();
+        controller.HandleArmorRegeneration();
     }
 
     public CharacterController GetCharacterController()
@@ -116,11 +119,21 @@ public class PlayerView : MonoBehaviour, IDamageble
 
     public void TakeDamage(float damage)
     {
-        throw new System.NotImplementedException();
+        controller.TakeDamage(damage);
     }
 
     public void Heal(float heal)
     {
-        throw new System.NotImplementedException();
+        controller.Heal(heal);
+    }
+
+    public void UpdateHealthBar(float currentHealth, float maxHealth)
+    {
+        healthBar.fillAmount = currentHealth / maxHealth;
+    }
+
+    public void UpdateArmorBar(float currentArmor, float maxArmor)
+    {
+        armorBar.fillAmount = currentArmor / maxArmor;
     }
 }

@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
   PlayerViewPrefab: {fileID: 5807613720486478550, guid: c1e06914d378edb4f8bb918ab348e710, type: 3}
+  MaxHealth: 100
+  MaxArmor: 20
+  ArmorCooldown: 10
+  ArmorRegenRate: 1
   MovementSpeed: 5
   DashSpeed: 15
   DashDuration: 0.3

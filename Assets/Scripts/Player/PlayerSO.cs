@@ -5,6 +5,12 @@ public class PlayerSO : ScriptableObject
 {
     public PlayerView PlayerViewPrefab;
 
+    [Header("Player Health and Armor")]
+    public float MaxHealth = 100f;
+    public float MaxArmor = 20f;
+    public float ArmorCooldown = 5f;
+    public float ArmorRegenRate = 1f;
+
     [Header("Movement Settings")]
     public float MovementSpeed = 5f;
     public float DashSpeed = 15f;

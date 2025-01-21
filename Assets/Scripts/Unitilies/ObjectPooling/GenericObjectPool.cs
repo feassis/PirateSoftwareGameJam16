@@ -45,10 +45,11 @@ namespace Utilities.ObjectPooling
             pooledItem.isUsed = false;
         }
 
-        public class PooledItem<T>
-        {
-            public T Item;
-            public bool isUsed;
-        }
+        
+    }
+    public class PooledItem<T>
+    {
+        public T Item;
+        public bool isUsed;
     }
 }

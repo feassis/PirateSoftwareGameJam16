@@ -19,6 +19,10 @@ public class PlayerController
     private WeaponController weaponController;
     private EventService eventService;
 
+    private float currentHealth;
+    private float currentArmor;
+    private float armorCooldownTimer = 0f;
+
     public PlayerController(PlayerView view, PlayerModel model, Transform spawnPoint, EventService eventService)
     {
         this.eventService = eventService;
@@ -27,6 +31,11 @@ public class PlayerController
         this.model = model;
         this.model.SetController(this);
         InstantiateWeapon();
+
+        currentHealth = model.MaxHealth;
+        currentArmor = model.MaxArmor;
+        view.UpdateHealthBar(currentHealth, model.MaxHealth);
+        view.UpdateArmorBar(currentArmor, model.MaxArmor);
     }
 
     ~PlayerController()
@@ -169,5 +178,56 @@ public class PlayerController
                 dashTimer = 0f;
             }
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        armorCooldownTimer = model.ArmorCooldown;
+
+        if (currentArmor > 0)
+        {
+            currentArmor -= damage;
+            if (currentArmor < 0)
+            {
+                currentHealth += currentArmor;
+                currentArmor = 0;
+            }
+        }
+        else
+        {
+            currentHealth -= damage;
+        }
+
+        view.UpdateHealthBar(currentHealth, model.MaxHealth);
+        view.UpdateArmorBar(currentArmor, model.MaxArmor);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Heal(float heal)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + heal, 0, model.MaxHealth);
+        view.UpdateHealthBar(currentHealth, model.MaxHealth);
+    }
+
+    private void Die()
+    {
+        Debug.Log("Player has died");
+    }
+
+    public void HandleArmorRegeneration()
+    {
+        if(armorCooldownTimer > 0)
+        {
+            armorCooldownTimer -= Time.deltaTime;
+        }
+        else
+        {
+            currentArmor = Mathf.Clamp(currentArmor + model.ArmorRegenRate * Time.deltaTime, 0, model.MaxArmor);
+        }
+        view.UpdateArmorBar(currentArmor, model.MaxArmor);
     }
 }

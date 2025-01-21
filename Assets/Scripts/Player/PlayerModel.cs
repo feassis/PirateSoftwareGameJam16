@@ -2,6 +2,11 @@
 
 public class PlayerModel
 {
+    public float MaxHealth = 100f;
+    public float MaxArmor = 20f;
+    public float ArmorCooldown = 5f;
+    public float ArmorRegenRate = 1f;
+
     public float MovementSpeed = 5f;
     public float DashSpeed = 15f;
     public float DashDuration = 0.3f;
@@ -24,6 +29,11 @@ public class PlayerModel
 
     public PlayerModel(PlayerSO playerSO)
     {
+        MaxHealth = playerSO.MaxHealth;
+        MaxArmor = playerSO.MaxArmor;
+        ArmorCooldown = playerSO.ArmorCooldown;
+        ArmorRegenRate = playerSO.ArmorRegenRate;
+
         MovementSpeed = playerSO.MovementSpeed;
         DashSpeed = playerSO.DashSpeed;
         DashDuration = playerSO.DashDuration;

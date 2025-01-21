@@ -22,3 +22,12 @@ MonoBehaviour:
   OverheatIncreasePerShot: 5
   OverheatDecreasePerSeconds: 1
   OverheatLimit: 100
+  MinBlastRadious: 1
+  MaxBlastRadious: 3
+  MinBlastDamage: 5
+  MaxBlastDamage: 15
+  TimeToExplode: 3
+  ExplosionTarget:
+    serializedVersion: 2
+    m_Bits: 768
+  ExplosionParticles: {fileID: 298753222379023026, guid: 5c8e0b79a61e7ef47bcd9208c25bc597, type: 3}

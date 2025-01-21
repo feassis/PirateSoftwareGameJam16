@@ -13,4 +13,11 @@ public class WeaponSO : ScriptableObject
     public float OverheatIncreasePerShot;
     public float OverheatDecreasePerSeconds;
     public float OverheatLimit;
+    public float MinBlastRadious;
+    public float MaxBlastRadious;
+    public float MinBlastDamage;
+    public float MaxBlastDamage;
+    public float TimeToExplode;
+    public LayerMask ExplosionTarget;
+    public ParticleSystem ExplosionParticles;
 }

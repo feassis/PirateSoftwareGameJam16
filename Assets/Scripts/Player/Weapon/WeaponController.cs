@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 public class WeaponController
 {
@@ -61,6 +63,17 @@ public class WeaponController
         Rigidbody rigidbody = view.GetRigidbody();
         rigidbody.isKinematic = false;
         rigidbody.linearVelocity = direction * model.WeaponThrowVelocity;
+
+        if(model.TimeToExplode > 0)
+        {
+            view.StartCoroutine(GranadeRoutine());
+        }
+    }
+
+    private IEnumerator GranadeRoutine()
+    {
+        yield return new WaitForSeconds(model.TimeToExplode);
+        BlowUp();
     }
 
     private float GetWeaponCoolDown()
@@ -71,6 +84,22 @@ public class WeaponController
     public void BlowUp()
     {
         Debug.Log("BlowUp");
+
+        float radious = model.MinBlastRadious + (model.MaxBlastRadious - model.MinBlastRadious) * Mathf.Clamp(overheatAmount / model.OverheatLimit, 0,1);
+
+        Collider[] colliders = Physics.OverlapSphere(view.transform.position, radious, model.ExplosionTarget);
+        DebugExtension.DebugWireSphere(view.transform.position, Color.red, radious, 1f);
+        GameObject.Instantiate(model.ExplosionParticles.gameObject, view.transform.position, Quaternion.identity);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject.TryGetComponent<IDamageble>(out IDamageble damageble))
+            {
+                float damage = model.MinBlastDamage + (model.MaxBlastDamage - model.MinBlastDamage) * Mathf.Clamp(overheatAmount / model.OverheatLimit, 0, 1);
+                damageble.TakeDamage(damage);
+            }
+        }
+
         eventService.OnWeaponDestroyed.InvokeEvent(this);
         GameObject.Destroy(view.gameObject);
     }

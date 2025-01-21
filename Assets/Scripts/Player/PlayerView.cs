@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerView : MonoBehaviour
+public class PlayerView : MonoBehaviour, IDamageble
 {
     [SerializeField] private Transform weaponHolder;
     [SerializeField] private Transform cameraTransform;
@@ -112,5 +112,15 @@ public class PlayerView : MonoBehaviour
     public Transform GetCameraTransform()
     {
         return cameraTransform;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Heal(float heal)
+    {
+        throw new System.NotImplementedException();
     }
 }

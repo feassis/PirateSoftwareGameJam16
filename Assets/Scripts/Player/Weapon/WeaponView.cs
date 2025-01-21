@@ -83,14 +83,6 @@ public class WeaponView : MonoBehaviour
         return shootPoint;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (obstacleLayer == (obstacleLayer | (1 << collision.gameObject.layer)))
-        {
-            controller.BlowUp();
-        }
-    }
-
     public void UpdateOverheatUI(float overheatPercentage)
     {
         overheatBar.fillAmount = overheatPercentage;

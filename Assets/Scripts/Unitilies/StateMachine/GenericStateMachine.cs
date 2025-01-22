@@ -8,11 +8,11 @@ namespace Utilities.StateMachine
     {
         protected T Owner;
         public IState currentState { get; protected set; }
-        protected Dictionary<States, IState> States = new Dictionary<States, IState>();
+        protected Dictionary<State, IState> States = new Dictionary<State, IState>();
 
         public GenericStateMachine(T Owner) => this.Owner = Owner;
 
-        public void Update() => currentState?.Update();
+        public void Update(float deltaTime) => currentState?.Update(deltaTime);
 
         protected void ChangeState(IState newState)
         {
@@ -21,7 +21,7 @@ namespace Utilities.StateMachine
             currentState?.OnStateEnter();
         }
 
-        public void ChangeState(States newState) => ChangeState(States[newState]);
+        public void ChangeState(State newState) => ChangeState(States[newState]);
 
         protected void SetOwner()
         {

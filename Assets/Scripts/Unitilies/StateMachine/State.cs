@@ -1,10 +1,11 @@
 ﻿namespace Utilities.StateMachine
 {
-    public enum States
+    public enum State
     {
         IDLE,
         SHOOTING,
         PATROLLING,
         CHASING,
+        ATTACKING
     }
 }

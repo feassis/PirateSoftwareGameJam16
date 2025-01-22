@@ -7,7 +7,7 @@ namespace Utilities.StateMachine
         public MonoBehaviour Owner { get; set; }
 
         void OnStateEnter();
-        void Update();
+        void Update(float TimeDeltaTime);
         void OnStateExit();
     }
 }

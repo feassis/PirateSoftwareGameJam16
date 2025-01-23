@@ -2,5 +2,6 @@
 {
     Idle,
     Walking,
-    Attack
+    Attack,
+    Death
 }

@@ -6,6 +6,7 @@
         SHOOTING,
         PATROLLING,
         CHASING,
-        ATTACKING
+        ATTACKING,
+        DEATH
     }
 }

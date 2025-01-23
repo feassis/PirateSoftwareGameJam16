@@ -31,6 +31,7 @@ public class EnemyBase : MonoBehaviour, IDamageble
     private const string IDLE_ANIMATION = "idle";
     private const string WALK_ANIMATION = "walking";
     private const string ATTACK_ANIMATION = "attack";
+    private const string DEATH_ANIMATION = "death";
 
     public PlayerView target { get; protected set;}
     public bool IsOnAttackRange { get; protected set; }
@@ -153,9 +154,8 @@ public class EnemyBase : MonoBehaviour, IDamageble
     protected virtual void Die()
     {
         meshRenderer.material = damageMaterial;
-        meshRenderer.transform.localPosition = new Vector3(0, 0.5f, 0);
-        meshRenderer.transform.localRotation = Quaternion.Euler(90, 0, 0);
         characterController.detectCollisions = false;
+        stateMachine.ChangeState(State.DEATH);
     }
 
     public void PlayAnimation(EnemyAnimations anim)
@@ -171,6 +171,9 @@ public class EnemyBase : MonoBehaviour, IDamageble
             case EnemyAnimations.Attack:
                 animator.CrossFadeInFixedTime(ATTACK_ANIMATION, 0.1f);
                 CoroutineManager.Instance.WaitForAnimation(animator, ATTACK_ANIMATION, () => animator.CrossFadeInFixedTime(IDLE_ANIMATION, 0.1f));
+                break;
+            case EnemyAnimations.Death:
+                animator.CrossFadeInFixedTime(DEATH_ANIMATION, 0.1f);
                 break;
             default:
                 break;

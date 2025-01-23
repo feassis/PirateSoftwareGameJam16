@@ -7,6 +7,7 @@ public class EnemyMeleeStateMachine : GenericStateMachine<EnemyBase>
         this.States.Add(State.IDLE, new EnemyIdleState());
         this.States.Add(State.CHASING, new EnemyChasingState());
         this.States.Add(State.ATTACKING, new EnemyAttackState());
+        this.States.Add(State.DEATH, new EnemyDeathState());
         SetOwner();
     }
 }

@@ -32,7 +32,8 @@ public class PlayerView : MonoBehaviour, IDamageble
         playerInput.Player.Move.performed += ctx => MoveInput(ctx.ReadValue<Vector2>());
         playerInput.Player.Move.canceled += ctx => MoveInputStop(ctx.ReadValue<Vector2>());
         playerInput.Player.Dash.performed += ctx => Dash();
-        playerInput.Player.Jump.performed += ctx => Jump();
+        playerInput.Player.Jump.performed += ctx => JumpStart();
+        playerInput.Player.Jump.canceled += ctx => JumpEnd();
     }
 
     public Transform GetWeaponHolder()
@@ -67,9 +68,14 @@ public class PlayerView : MonoBehaviour, IDamageble
     }
 
 
-    private void Jump()
+    private void JumpStart()
     {
-        controller.Jump();
+        controller.JumpInputStart();
+    }
+
+    private void JumpEnd()
+    {
+        controller.JumpInputStop();
     }
 
     private void Dash()

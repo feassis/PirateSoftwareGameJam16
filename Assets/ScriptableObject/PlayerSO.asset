@@ -21,12 +21,13 @@ MonoBehaviour:
   DashSpeed: 15
   DashDuration: 0.3
   DashCooldown: 2
-  MaxFallVelocity: -2
-  MaxUpVelocity: 10
-  JumpCooldown: 0.5
-  JumpUpwardsDuration: 0.2
+  MaxFallVelocity: -30
+  MaxUpVelocity: 30
+  JumpCooldown: 0.2
+  JumpMaxInputDuration: 0.3
   JumpVelocity: 6
-  Gravity: -2
+  Gravity: -8
+  GravityDuringJumpUpWards: -1
   LookSensitivityX: 150
   LookSensitivityY: 100
   VerticalLookUperBounds: 90

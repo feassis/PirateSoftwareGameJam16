@@ -18,10 +18,11 @@ public class PlayerSO : ScriptableObject
     public float DashCooldown = 2f;
     public float MaxFallVelocity = -10f;
     public float MaxUpVelocity = 50f;
-    public float JumpCooldown = 0.5f;
-    public float JumpUpwardsDuration = 0.3f;
+    public float JumpCooldown = 0.7f;
+    public float JumpMaxInputDuration = 0.5f;
     public float JumpVelocity = 2f;
     public float Gravity = -5f;
+    public float GravityDuringJumpUpWards = -1f;
 
     [Header("Camera Settings")]
     public float LookSensitivityX = 100f;

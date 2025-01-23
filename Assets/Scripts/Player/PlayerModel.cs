@@ -14,9 +14,10 @@ public class PlayerModel
     public float MaxFallVelocity = -10f;
     public float MaxUpVelocity = 50f;
     public float JumpCooldown = 0.5f;
-    public float JumpUpwardsDuration = 0.3f;
+    public float JumpMaxInputDuration;
     public float JumpVelocity = 2f;
     public float Gravity = -5f;
+    public float GravityDuringJumpUpWards;
 
     public float LookSensitivityX = 100f;
     public float LookSensitivityY = 3f;
@@ -41,9 +42,10 @@ public class PlayerModel
         MaxFallVelocity = playerSO.MaxFallVelocity;
         MaxUpVelocity = playerSO.MaxUpVelocity;
         JumpCooldown = playerSO.JumpCooldown;
-        JumpUpwardsDuration = playerSO.JumpUpwardsDuration;
+        JumpMaxInputDuration = playerSO.JumpMaxInputDuration;
         JumpVelocity = playerSO.JumpVelocity;
         Gravity = playerSO.Gravity;
+        GravityDuringJumpUpWards = playerSO.GravityDuringJumpUpWards;
 
         LookSensitivityX = playerSO.LookSensitivityX;
         LookSensitivityY = playerSO.LookSensitivityY;

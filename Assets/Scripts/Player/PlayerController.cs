@@ -15,6 +15,7 @@ public class PlayerController
     private float jumpCooldownTimer = 0f;
     private float jumpTimer = 0f;
     private bool isJumping = false;
+    private bool isJumpingButtonDown = false;
 
     private WeaponController weaponController;
     private EventService eventService;
@@ -93,7 +94,14 @@ public class PlayerController
 
         if (!characterController.isGrounded && !isJumping)
         {
-            move.y += (model.Gravity + characterController.velocity.y) * Time.deltaTime;
+            if(characterController.velocity.y > 0)
+            {
+                move.y += model.GravityDuringJumpUpWards * Time.deltaTime;
+            }
+            else
+            {
+                move.y += model.Gravity * Time.deltaTime;
+            }
         }
 
         if (isJumping)
@@ -105,15 +113,15 @@ public class PlayerController
         characterController.Move(move);
     }
 
-    public void Jump()
+    public void JumpInputStart()
     {
-        CharacterController characterController = view.GetCharacterController();
-        if (characterController.isGrounded && jumpCooldownTimer <= 0)
-        {
-            isJumping = true;
-            jumpCooldownTimer = model.JumpCooldown;
-            jumpTimer = model.JumpUpwardsDuration;
-        }
+        isJumpingButtonDown = true;
+    }
+
+    public void JumpInputStop()
+    {
+        isJumpingButtonDown = false;
+        isJumping = false;
     }
 
     public void Dash()
@@ -151,14 +159,24 @@ public class PlayerController
             jumpCooldownTimer -= Time.deltaTime;
         }
 
-        if (isJumping)
+
+        if(jumpTimer > 0)
         {
             jumpTimer -= Time.deltaTime;
 
-            if (jumpTimer <= 0)
+            if(jumpTimer <= 0)
             {
                 isJumping = false;
             }
+        }
+
+        CharacterController characterController = view.GetCharacterController();
+
+        if(isJumpingButtonDown && jumpCooldownTimer <= 0 && characterController.isGrounded && !isJumping)
+        {
+            isJumping = true;
+            jumpCooldownTimer = model.JumpCooldown;
+            jumpTimer = model.JumpMaxInputDuration;
         }
     }
 

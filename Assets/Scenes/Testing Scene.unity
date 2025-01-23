@@ -1340,6 +1340,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyMelee
       objectReference: {fileID: 0}
+    - target: {fileID: 2191816049475912126, guid: 650a943760545814ba3998aaac5d7b76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6550465103691153829, guid: 650a943760545814ba3998aaac5d7b76, type: 3}
       propertyPath: m_Enabled
       value: 1

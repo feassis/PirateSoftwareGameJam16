@@ -32,6 +32,7 @@ public class EnemyBase : MonoBehaviour, IDamageble
     private const string WALK_ANIMATION = "walking";
     private const string ATTACK_ANIMATION = "attack";
     private const string DEATH_ANIMATION = "death";
+    private const string SHOOT_ANIMATION = "shoot";
 
     public PlayerView target { get; protected set;}
     public bool IsOnAttackRange { get; protected set; }
@@ -89,6 +90,13 @@ public class EnemyBase : MonoBehaviour, IDamageble
         finalMotion *= deltaTime;
 
         characterController.Move(finalMotion);
+    }
+
+    public void MoveAwayFromTheTarget(Transform target, float deltaTime)
+    {
+        Vector3 position = (transform.position - target.position).normalized * moveSpeed + transform.position;
+
+        MoveTo(position, deltaTime);
     }
 
     public void MoveTo(Vector3 moveToPosition, float deltaTime)
@@ -175,6 +183,10 @@ public class EnemyBase : MonoBehaviour, IDamageble
             case EnemyAnimations.Death:
                 animator.CrossFadeInFixedTime(DEATH_ANIMATION, 0.1f);
                 break;
+            case EnemyAnimations.Shoot:
+                animator.CrossFadeInFixedTime(SHOOT_ANIMATION, 0.1f);
+                CoroutineManager.Instance.WaitForAnimation(animator, SHOOT_ANIMATION, () => animator.CrossFadeInFixedTime(IDLE_ANIMATION, 0.1f));
+                break;
             default:
                 break;
         }
@@ -204,5 +216,10 @@ public class EnemyBase : MonoBehaviour, IDamageble
     public virtual State GetStateAfterPlayerDetection()
     {
         return State.CHASING;
+    }
+
+    public virtual State GetAttackState()
+    {
+        return State.ATTACKING;
     }
 }

@@ -3,7 +3,7 @@ using Utilities.StateMachine;
 
 public class EnemyChasingState : IState
 {
-    private EnemyBase owner;
+    protected EnemyBase owner;
 
     public MonoBehaviour Owner { get => owner; set => owner = (EnemyBase) value; }
 
@@ -17,7 +17,7 @@ public class EnemyChasingState : IState
         owner.ResetNavAgent();
     }
 
-    public void Update(float deltaTime)
+    public virtual void Update(float deltaTime)
     {
         if(owner.target == null)
         {
@@ -27,7 +27,7 @@ public class EnemyChasingState : IState
 
         if(owner.IsOnAttackRange)
         {
-            owner.stateMachine.ChangeState(State.ATTACKING);
+            owner.stateMachine.ChangeState(owner.GetAttackState());
             return;
         }
 

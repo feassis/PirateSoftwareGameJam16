@@ -256,9 +256,9 @@ GameObject:
   - component: {fileID: 2684036949132648019}
   - component: {fileID: 6542011657684599572}
   - component: {fileID: 6182346501440693775}
-  - component: {fileID: 1005416831074062685}
   - component: {fileID: 8536667611537577044}
   - component: {fileID: 1337794439099028014}
+  - component: {fileID: 5701037375819449102}
   m_Layer: 10
   m_Name: TestingWeaponView
   m_TagString: Untagged
@@ -336,33 +336,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1005416831074062685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5169297848034689614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 770963387582e1c409d58d411be1ffb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootPoint: {fileID: 2181657322572296223}
-  myRigidbody: {fileID: 1337794439099028014}
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 192
-  overheatBar: {fileID: 299695627427113264}
-  overheatColors:
-  - Percentage: 0.25
-    Color: {r: 1, g: 1, b: 1, a: 1}
-  - Percentage: 0.5
-    Color: {r: 1, g: 0.94832873, b: 0, a: 1}
-  - Percentage: 0.75
-    Color: {r: 1, g: 0.48571634, b: 0, a: 1}
-  - Percentage: 1
-    Color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &8536667611537577044
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -411,6 +384,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5701037375819449102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5169297848034689614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c2634f759cb1c4a968def2cb53df99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPoint: {fileID: 2181657322572296223}
+  myRigidbody: {fileID: 1337794439099028014}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 192
+  overheatBar: {fileID: 299695627427113264}
+  overheatColors:
+  - Percentage: 0.25
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - Percentage: 0.5
+    Color: {r: 0.9254902, g: 0.90484107, b: 0.058823504, a: 1}
+  - Percentage: 0.75
+    Color: {r: 1, g: 0.41951597, b: 0, a: 1}
+  - Percentage: 1
+    Color: {r: 1, g: 0, b: 0.05490196, a: 1}
 --- !u!1 &8484439940397905193
 GameObject:
   m_ObjectHideFlags: 0

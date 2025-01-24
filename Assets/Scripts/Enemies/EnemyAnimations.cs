@@ -3,5 +3,6 @@
     Idle,
     Walking,
     Attack,
-    Death
+    Death,
+    Shoot
 }

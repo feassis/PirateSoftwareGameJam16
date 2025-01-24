@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerDetectionTrigglerSphere : MonoBehaviour
 {
+    [SerializeField] private Color gizmoColor = Color.red;
     public event Action<PlayerView> OnPlayerEnterRange;
     public event Action<PlayerView> OnPlayerExitRange;
 
@@ -32,7 +33,7 @@ public class PlayerDetectionTrigglerSphere : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = gizmoColor;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

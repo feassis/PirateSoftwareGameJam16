@@ -32,11 +32,6 @@ public class EnemyShooter : EnemyBase
         avoidanceDetection.Setup(avoidanceRange);
     }
 
-    private void Start()
-    {
-        InstantiateWeapon();
-    }
-
     private void OnAvoidanceRangeEnter(PlayerView view)
     {
         IsOnAvoidanceRange = true;
@@ -45,6 +40,11 @@ public class EnemyShooter : EnemyBase
     private void OnAvoidanceRangeExit(PlayerView view)
     {
         IsOnAvoidanceRange = false;
+    }
+
+    private void Start()
+    {
+        InstantiateWeapon();
     }
 
     private void InstantiateWeapon()
@@ -76,62 +76,5 @@ public class EnemyShooter : EnemyBase
     private void Update()
     {
         stateMachine.Update(Time.deltaTime);
-    }
-}
-
-
-public class EnemyShooterStateMachine : GenericStateMachine<EnemyBase>
-{
-    public EnemyShooterStateMachine(EnemyBase Owner) : base(Owner)
-    {
-        this.States.Add(State.IDLE, new EnemyIdleState());
-        this.States.Add(State.CHASING, new EnemyChasingState());
-        this.States.Add(State.SHOOTING, new EnemyShootingState());
-        this.States.Add(State.AVOIDING, new EnemyShooterAvoidanceState());
-        this.States.Add(State.ATTACKING, new EnemyShootingState());
-        this.States.Add(State.DEATH, new EnemyDeathState());
-        SetOwner();
-    }
-}
-
-public class EnemyShootingState : IState
-{
-    private EnemyBase owner;
-
-    public MonoBehaviour Owner { get => owner; set => owner = (EnemyBase)value;}
-
-    public void OnStateEnter()
-    {
-        owner.PlayAnimation(EnemyAnimations.Idle);
-    }
-
-    public void OnStateExit()
-    {
-        
-    }
-
-    public void Update(float TimeDeltaTime)
-    {
-        owner.FacePlayer();
-        ((EnemyShooter)owner).PointGunToPlayer();
-
-        if(((EnemyShooter)owner).EnemyWeaponController.CanShoot())
-        {
-            owner.PlayAnimation(EnemyAnimations.Shoot);
-            ((EnemyShooter)owner).EnemyWeaponController.Shoot();
-            return;
-        }
-
-        if(owner.target == null)
-        {
-            owner.stateMachine.ChangeState(State.IDLE);
-            return;
-        }
-
-        if(((EnemyShooter)owner).IsOnAvoidanceRange)
-        {
-            owner.stateMachine.ChangeState(State.AVOIDING);
-            return;
-        }
     }
 }

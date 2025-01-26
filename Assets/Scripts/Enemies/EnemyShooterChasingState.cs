@@ -2,7 +2,7 @@
 
 public class EnemyShooterChasingState : EnemyChasingState
 {
-    public virtual void Update(float deltaTime)
+    public override void Update(float deltaTime)
     {
         if (owner.target == null)
         {

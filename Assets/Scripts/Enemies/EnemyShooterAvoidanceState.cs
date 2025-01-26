@@ -25,10 +25,22 @@ public class EnemyShooterAvoidanceState : IState
             return;
         }
 
-        if (((EnemyShooter)owner).EnemyWeaponController.CanShoot())
+        if(owner is EnemyGranadier)
         {
-            owner.stateMachine.ChangeState(State.SHOOTING); 
-            return;
+            if((owner as EnemyGranadier).CanThrowGranade())
+            {
+                owner.stateMachine.ChangeState(State.SHOOTING);
+                return;
+            }
+        }
+
+        if(owner is EnemyShooter)
+        {
+            if((owner as EnemyShooter).EnemyWeaponController.CanShoot())
+            {
+                owner.stateMachine.ChangeState(State.SHOOTING);
+                return;
+            }
         }
 
         owner.MoveAwayFromTheTarget(owner.target.transform, TimeDeltaTime);

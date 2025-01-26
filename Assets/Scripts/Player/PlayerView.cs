@@ -11,6 +11,7 @@ public class PlayerView : MonoBehaviour, IDamageble
     [SerializeField] private Image healthBar;
     [SerializeField] private Image armorBar;
     [SerializeField] private Transform aimAtPosition;
+    [SerializeField] private Transform granadeAimAtPosition;
 
     private CharacterController characterController;
 
@@ -144,5 +145,6 @@ public class PlayerView : MonoBehaviour, IDamageble
         armorBar.fillAmount = currentArmor / maxArmor;
     }
 
-    public Transform GetAimAtPosition() => aimAtPosition; 
+    public Transform GetAimAtPosition() => aimAtPosition;
+    public Transform GetGranadeAimAt() => granadeAimAtPosition; 
 }

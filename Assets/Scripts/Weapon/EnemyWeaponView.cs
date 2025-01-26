@@ -6,7 +6,7 @@ public class EnemyWeaponView : WeaponView
 
     public bool IsFacingTarget(Transform target)
     {
-        return VectorUtilities.IsAngleLessThan(transform.forward, target.position - transform.position, facingAngle);
+        return PhisichsUtilities.IsAngleLessThan(transform.forward, target.position - transform.position, facingAngle);
     }
 
     public void RotateToTarget(Transform target)

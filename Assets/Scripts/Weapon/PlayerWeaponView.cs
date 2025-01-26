@@ -1,17 +1,14 @@
-using Input;
-using System;
+﻿using Input;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeaponView : MonoBehaviour
+public class PlayerWeaponView : WeaponView
 {
-    [SerializeField] private Transform shootPoint;
-    [SerializeField] private Rigidbody myRigidbody;
-    [SerializeField] private LayerMask obstacleLayer;
-    [SerializeField] private Image overheatBar;
-    [SerializeField] private List<OverheatColorPercentage> overheatColors = new List<OverheatColorPercentage>();
-    private WeaponController controller;
+    
+    [SerializeField] protected Image overheatBar;
+    [SerializeField] protected List<OverheatColorPercentage> overheatColors = new List<OverheatColorPercentage>();
+    
     private PlayerInput playerInput;
 
 
@@ -56,34 +53,16 @@ public class WeaponView : MonoBehaviour
         controller.Throw();
     }
 
-    public void ThrowViewLogic()
+
+    public override void ThrowViewLogic()
     {
         transform.parent = null;
         playerInput.Disable();
         transform.Rotate(0, 90, 0);
     }
 
-    public Rigidbody GetRigidbody()
-    {
-        return myRigidbody;
-    }
 
-    public void SetController(WeaponController controller)
-    {
-        this.controller = controller;
-    }
-
-    public Vector3 GetForwardDirection()
-    {
-        return shootPoint.forward;
-    }
-
-    public Transform GetShootPointTransform()
-    {
-        return shootPoint;
-    }
-
-    public void UpdateOverheatUI(float overheatPercentage)
+    public override void UpdateOverheatUI(float overheatPercentage)
     {
         overheatBar.fillAmount = overheatPercentage;
         for (int i = 0; i < overheatColors.Count; i++)

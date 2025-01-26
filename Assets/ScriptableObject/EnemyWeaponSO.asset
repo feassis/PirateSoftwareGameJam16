@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecfd5e142e8ddba4487ef8914e1ff0de, type: 3}
-  m_Name: WeaponSO
+  m_Name: EnemyWeaponSO
   m_EditorClassIdentifier: 
   Damage: 5
-  FireRate: 4
+  FireRate: 0.5
   BulletSpeed: 25
   BulletLifeTime: 3
-  BulletPrefab: {fileID: 4237540301011920922, guid: 77a873a8356c6364fa908eef50048b22, type: 3}
-  WeaponPrefab: {fileID: 5701037375819449102, guid: 0b975863ce6553e499f2c3ed4e8a68f8, type: 3}
+  BulletPrefab: {fileID: 4237540301011920922, guid: 17ee38ae7d8cd8947a93e0b569884f20, type: 3}
+  WeaponPrefab: {fileID: 809191716668009399, guid: 90c1f7204e024344695bd3d780fa1ab3, type: 3}
   WeaponThrowVelocity: 20
   OverheatIncreasePerShot: 5
   OverheatDecreasePerSeconds: 1

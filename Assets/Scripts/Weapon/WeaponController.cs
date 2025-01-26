@@ -4,12 +4,12 @@ using UnityEngine.Rendering;
 
 public class WeaponController
 {
-    private WeaponView view;
-    private WeaponModel model;
+    protected WeaponView view;
+    protected WeaponModel model;
 
-    private float shootTimer = 0f;
-    private EventService eventService;
-    private float overheatAmount = 0f;
+    protected float shootTimer = 0f;
+    protected EventService eventService;
+    protected float overheatAmount = 0f;
 
     public WeaponController(WeaponView view, WeaponModel model, Transform gunParent, EventService eventService)
     {
@@ -21,7 +21,7 @@ public class WeaponController
         view.UpdateOverheatUI(0f);
     }
 
-    public void Updade()
+    public virtual void Updade()
     {
         if(shootTimer > 0)
         {
@@ -35,7 +35,7 @@ public class WeaponController
         }
     }
 
-    public void Shoot()
+    public virtual void Shoot()
     {
         if(shootTimer > 0)
         {
@@ -70,13 +70,13 @@ public class WeaponController
         }
     }
 
-    private IEnumerator GranadeRoutine()
+    protected IEnumerator GranadeRoutine()
     {
         yield return new WaitForSeconds(model.TimeToExplode);
         BlowUp();
     }
 
-    private float GetWeaponCoolDown()
+    protected float GetWeaponCoolDown()
     {
         return 1 / model.FireRate;
     }

@@ -7,6 +7,7 @@
         PATROLLING,
         CHASING,
         ATTACKING,
-        DEATH
+        DEATH,
+        AVOIDING,
     }
 }

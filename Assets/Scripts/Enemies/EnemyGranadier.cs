@@ -56,12 +56,11 @@ public class EnemyGranadier : EnemyBase
     }
 
 
-
-
     public void ThrowGranade()
     {
         granadeTimer = granadeCooldown;
 
+        GameManager.Instance.AudioService.PlaySFXAtPosition(SFXType.EnemyGranade, spawnPoint.position);
         EnemyGranade granade = Instantiate(granadePrefab, spawnPoint.position, Quaternion.identity);
         granade.Setup(attackDamage, explosionRadius, target.GetGranadeAimAt());
         granade.Rb.linearVelocity = PhisichsUtilities.CalculateThrowVelocity(spawnPoint.position, target.GetGranadeAimAt().position, timeToTarget);

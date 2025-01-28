@@ -19,6 +19,11 @@ public class EnemyWeaponController : WeaponController
         
     }
 
+    protected override void PlayShootSound()
+    {
+        GameManager.Instance.AudioService.PlaySFXAtPosition(SFXType.EnemyShoot, view.GetShootPointTransform().position);
+    }
+
     public override void Shoot()
     {
         if (shootTimer > 0)
@@ -28,6 +33,7 @@ public class EnemyWeaponController : WeaponController
 
         BulletModel bulletModel = new BulletModel(model.Damage, model.BulletSpeed, model.BulletLifeTime);
         BulletController bulletController = new BulletController(model.BulletPrefab, bulletModel, view.GetShootPointTransform(), view.GetForwardDirection());
+        PlayShootSound();
 
         shootTimer = GetWeaponCoolDown();
     }

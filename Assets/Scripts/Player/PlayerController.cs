@@ -228,6 +228,7 @@ public class PlayerController
 
         view.UpdateHealthBar(currentHealth, model.MaxHealth);
         view.UpdateArmorBar(currentArmor, model.MaxArmor);
+        GameManager.Instance.AudioService.PlaySFXAtPosition(SFXType.PlayerHit, view.transform.position);
 
         if (currentHealth <= 0)
         {

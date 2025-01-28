@@ -35,6 +35,11 @@ public class WeaponController
         }
     }
 
+    protected virtual void PlayShootSound()
+    {
+        GameManager.Instance.AudioService.PlaySFXAtPosition(SFXType.PlayerShoot, view.GetShootPointTransform().position);
+    }
+
     public virtual void Shoot()
     {
         if(shootTimer > 0)
@@ -46,6 +51,8 @@ public class WeaponController
         view.UpdateOverheatUI(Mathf.Min(overheatAmount / model.OverheatLimit, 1f));
         BulletModel bulletModel = new BulletModel(model.Damage, model.BulletSpeed, model.BulletLifeTime);
         BulletController bulletController = new BulletController(model.BulletPrefab, bulletModel, view.GetShootPointTransform(), view.GetForwardDirection());
+
+        PlayShootSound();
 
         shootTimer =  GetWeaponCoolDown();
 

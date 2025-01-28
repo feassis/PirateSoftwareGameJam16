@@ -11,12 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float savingsPerMurder = 500;
     [SerializeField] private float opCostPerSecond = 10;
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private AudioService audioService;
     private EventService eventService;
     private EnemyManager enemyManager;
 
     private float levelTimer;
 
     public EventService EventService { get => eventService; }
+    public AudioService AudioService { get => audioService; }
 
     private void Awake()
     {
@@ -32,6 +34,11 @@ public class GameManager : MonoBehaviour
         CreateServices();
         InitializeServices();
         InitializeGameRules();
+    }
+
+    private void Start()
+    {
+        audioService.PlayBGM(BGMType.Main);
     }
 
     private void OnDestroy()

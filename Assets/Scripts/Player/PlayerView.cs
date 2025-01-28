@@ -12,6 +12,7 @@ public class PlayerView : MonoBehaviour, IDamageble
     [SerializeField] private Image armorBar;
     [SerializeField] private Transform aimAtPosition;
     [SerializeField] private Transform granadeAimAtPosition;
+    [SerializeField] private Transform healthAndArmorBar;
 
     private CharacterController characterController;
 
@@ -143,6 +144,12 @@ public class PlayerView : MonoBehaviour, IDamageble
     public void UpdateArmorBar(float currentArmor, float maxArmor)
     {
         armorBar.fillAmount = currentArmor / maxArmor;
+    }
+
+    public void ToggleOverHeatBar(bool isActive)
+    {
+        healthBar.gameObject.SetActive(isActive);
+        armorBar.gameObject.SetActive(isActive);
     }
 
     public Transform GetAimAtPosition() => aimAtPosition;

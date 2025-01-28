@@ -51,7 +51,7 @@ public class WeaponController
 
         if(overheatAmount >= model.OverheatLimit)
         {
-            BlowUp();
+            Overheat();
         }
     }
 
@@ -63,6 +63,9 @@ public class WeaponController
         Rigidbody rigidbody = view.GetRigidbody();
         rigidbody.isKinematic = false;
         rigidbody.linearVelocity = direction * model.WeaponThrowVelocity;
+
+        eventService.OnWeaponThrowed.InvokeEvent(this);
+        ToggleWeaponUI(false);
 
         if(model.TimeToExplode > 0)
         {
@@ -79,6 +82,12 @@ public class WeaponController
     protected float GetWeaponCoolDown()
     {
         return 1 / model.FireRate;
+    }
+
+    public void Overheat()
+    {
+        BlowUp();
+        eventService.OnWeaponOverheat.InvokeEvent(this);
     }
 
     public void BlowUp()
@@ -100,5 +109,10 @@ public class WeaponController
 
         eventService.OnWeaponDestroyed.InvokeEvent(this);
         GameObject.Destroy(view.gameObject);
+    }
+
+    public void ToggleWeaponUI(bool isActive)
+    {
+        view.ToggleWeaponUI(isActive);
     }
 }

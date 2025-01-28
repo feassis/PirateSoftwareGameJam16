@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController
@@ -41,13 +42,21 @@ public class PlayerController
 
     ~PlayerController()
     {
-        eventService.OnWeaponDestroyed.RemoveListener(OnWeaponController);
+        eventService.OnWeaponThrowed.RemoveListener(OnWeaponController);
+        eventService.OnWeaponOverheat.RemoveListener(OnWeaponController);
     }
 
     private void OnWeaponController(WeaponController controller)
     {
-        eventService.OnWeaponDestroyed.RemoveListener(OnWeaponController);
+        eventService.OnWeaponThrowed.RemoveListener(OnWeaponController);
+        eventService.OnWeaponOverheat.RemoveListener(OnWeaponController);
 
+        view.StartCoroutine(RespawnWeaponCoolDown());
+    }
+
+    private IEnumerator RespawnWeaponCoolDown()
+    {
+        yield return new WaitForSeconds(model.throwRespaenCoolDown);
         InstantiateWeapon();
     }
 
@@ -63,7 +72,8 @@ public class PlayerController
 
     private void InstantiateWeapon()
     {
-        eventService.OnWeaponDestroyed.AddListener(OnWeaponController);
+        eventService.OnWeaponThrowed.AddListener(OnWeaponController);
+        eventService.OnWeaponOverheat.AddListener(OnWeaponController);
         WeaponModel weaponModel = new WeaponModel(model.WeaponSO);
         weaponController = new WeaponController(model.WeaponSO.WeaponPrefab, weaponModel, view.GetWeaponHolder(), eventService);
     }
@@ -233,7 +243,9 @@ public class PlayerController
 
     private void Die()
     {
-        Debug.Log("Player has died");
+        weaponController.ToggleWeaponUI(false);
+        view.ToggleOverHeatBar(false);
+        eventService.OnPlayerDeath.InvokeEvent(this);
     }
 
     public void HandleArmorRegeneration()

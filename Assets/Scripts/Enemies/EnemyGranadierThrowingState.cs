@@ -28,6 +28,13 @@ public class EnemyGranadierThrowingState : IState
         if (((EnemyGranadier)owner).IsOnAvoidanceRange)
         {
             owner.stateMachine.ChangeState(State.AVOIDING);
+            return;
+        }
+
+        if(owner.target == null)
+        {
+            owner.stateMachine.ChangeState(State.IDLE);
+            return;
         }
     }
 }

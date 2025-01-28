@@ -7,6 +7,7 @@ public class PlayerWeaponView : WeaponView
 {
     
     [SerializeField] protected Image overheatBar;
+    [SerializeField] protected GameObject overheatUI;
     [SerializeField] protected List<OverheatColorPercentage> overheatColors = new List<OverheatColorPercentage>();
     
     private PlayerInput playerInput;
@@ -59,6 +60,11 @@ public class PlayerWeaponView : WeaponView
         transform.parent = null;
         playerInput.Disable();
         transform.Rotate(0, 90, 0);
+    }
+
+    public override void ToggleWeaponUI(bool isActive)
+    {
+        overheatUI.gameObject.SetActive(isActive);
     }
 
 

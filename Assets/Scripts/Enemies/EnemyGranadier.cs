@@ -56,6 +56,8 @@ public class EnemyGranadier : EnemyBase
     }
 
 
+
+
     public void ThrowGranade()
     {
         granadeTimer = granadeCooldown;

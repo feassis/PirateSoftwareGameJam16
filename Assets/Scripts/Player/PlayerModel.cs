@@ -25,6 +25,7 @@ public class PlayerModel
     public float VerticalLookLowerBounds = -90f;
 
     public WeaponSO WeaponSO;
+    public float throwRespaenCoolDown = 0.5f;
 
     private PlayerController playerController;
 
@@ -53,7 +54,8 @@ public class PlayerModel
         VerticalLookLowerBounds = playerSO.VerticalLookLowerBounds;
 
         WeaponSO = playerSO.WeaponSO;
-    }
+        throwRespaenCoolDown = playerSO.throwRespaenCoolDown;
+}
 
     public void SetController(PlayerController playerController)
     {

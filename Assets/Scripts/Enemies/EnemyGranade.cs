@@ -33,7 +33,11 @@ public class EnemyGranade : MonoBehaviour
 
     private void Explode()
     {
-        Destroy(targetLocation.gameObject);
+        if(targetLocation != null)
+        {
+            Destroy(targetLocation.gameObject);
+        }
+
         Instantiate(explosionParticles, transform.position, Quaternion.identity);
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 

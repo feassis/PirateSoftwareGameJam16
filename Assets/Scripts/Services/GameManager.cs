@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -5,7 +7,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     
     [SerializeField] private GameLevelService gameLevelService;
+    [SerializeField] private EndGameMenu endGameMenu;
+    [SerializeField] private float savingsPerMurder = 500;
+    [SerializeField] private float opCostPerSecond = 10;
+    [SerializeField] private TextMeshProUGUI timerText;
     private EventService eventService;
+    private EnemyManager enemyManager;
+
+    private float levelTimer;
 
     public EventService EventService { get => eventService; }
 
@@ -22,6 +31,7 @@ public class GameManager : MonoBehaviour
 
         CreateServices();
         InitializeServices();
+        InitializeGameRules();
     }
 
     private void OnDestroy()
@@ -32,15 +42,44 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        levelTimer += Time.deltaTime;
+        UpdateTimerTextUI();
+    }
+
     private void CreateServices()
     {
         eventService = new EventService();
+        enemyManager = new EnemyManager();
     }
 
     private void InitializeServices()
     {
+        eventService.Init();
         gameLevelService.Init(eventService);
+        enemyManager.Init(eventService);
     }
 
+    private void InitializeGameRules()
+    {
+        eventService.OnAllEnemiesDead.AddListener(OnAllEnemiesDead);
+        eventService.OnPlayerDeath.AddListener(OnPlayerDeath);
+        levelTimer = 0;
+    }
 
+    private void OnPlayerDeath(PlayerController controller)
+    {
+        endGameMenu.ShowEndGameMenu(true, enemyManager.EnemyDeadCount, savingsPerMurder, levelTimer, opCostPerSecond);
+    }
+
+    private void OnAllEnemiesDead()
+    {
+        endGameMenu.ShowEndGameMenu(false, enemyManager.EnemyDeadCount, savingsPerMurder, levelTimer, opCostPerSecond);
+    }
+
+    private void UpdateTimerTextUI()
+    {
+        timerText.text = levelTimer.ToString("F2");
+    }
 }

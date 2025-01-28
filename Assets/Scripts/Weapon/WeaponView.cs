@@ -43,4 +43,9 @@ public class WeaponView : MonoBehaviour
     {
         
     }
+
+    public virtual void ToggleWeaponUI(bool isActive)
+    {
+        
+    }
 }

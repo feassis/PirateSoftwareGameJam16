@@ -51,6 +51,13 @@ public class EnemyBase : MonoBehaviour, IDamageble
 
         navMeshAgent.updatePosition = false;
         navMeshAgent.updateRotation = false;
+
+        
+    }
+
+    protected virtual void Start()
+    {
+        EnemyManager.Instance.SubscribeEnemy(this);
     }
 
     private void Update()
@@ -164,6 +171,7 @@ public class EnemyBase : MonoBehaviour, IDamageble
         meshRenderer.material = damageMaterial;
         characterController.detectCollisions = false;
         stateMachine.ChangeState(State.DEATH);
+        EventService.Instance.OnEnemyDeath.InvokeEvent (this);
     }
 
     public void PlayAnimation(EnemyAnimations anim)

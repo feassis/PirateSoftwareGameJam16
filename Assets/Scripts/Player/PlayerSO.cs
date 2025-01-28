@@ -32,4 +32,5 @@ public class PlayerSO : ScriptableObject
 
     [Header("Weapon Settings")]
     public WeaponSO WeaponSO;
+    public float throwRespaenCoolDown = 0.5f;
 }

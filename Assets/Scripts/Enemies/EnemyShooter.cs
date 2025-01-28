@@ -42,8 +42,9 @@ public class EnemyShooter : EnemyBase
         IsOnAvoidanceRange = false;
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         InstantiateWeapon();
     }
 
